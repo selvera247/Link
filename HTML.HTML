@@ -4,227 +4,853 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RRSGSL All Star Tryout</title>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<title>Peak Admin Co. — LinkedIn Page Redesign Mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Open Sans', sans-serif;
-    background: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    padding: 30px 20px;
-  }
-  .flyer {
-    width: 620px;
-    background: #fff;
-    border: 6px solid #1a3a6b;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.25);
-    overflow: hidden;
-  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* Header */
-.header {
-background: #1a3a6b;
-padding: 14px 20px;
+:root {
+–neon: #b94fff;
+–neon-dim: #8a2be2;
+–neon-glow: rgba(185,79,255,0.35);
+–teal: #00e5c8;
+–teal-glow: rgba(0,229,200,0.25);
+–bg: #0a0a0f;
+–surface: #111118;
+–surface2: #18181f;
+–border: rgba(255,255,255,0.07);
+–text: #f0edf8;
+–muted: #8f8ba0;
+–li-blue: #0a66c2;
+}
+
+body {
+background: #e9e5ec;
+font-family: ‘DM Sans’, sans-serif;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 32px 16px 64px;
+gap: 20px;
+}
+
+/* — Page Label — */
+.page-label {
+font-family: ‘Syne’, sans-serif;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: #6b5c80;
+margin-bottom: 4px;
+}
+
+/* — LinkedIn Shell — */
+.li-shell {
+width: 100%;
+max-width: 860px;
+background: #f3f2ee;
+border-radius: 12px;
+overflow: hidden;
+box-shadow: 0 8px 48px rgba(0,0,0,0.18);
+font-family: -apple-system, BlinkMacSystemFont, ‘Segoe UI’, sans-serif;
+}
+
+/* — LinkedIn Topbar — */
+.li-topbar {
+background: #fff;
+border-bottom: 1px solid #e0ddd8;
+padding: 10px 20px;
 display: flex;
 align-items: center;
 gap: 14px;
-border-bottom: 5px solid #c8102e;
 }
-.logo-circle {
-width: 60px; height: 60px;
-background: #fff;
-border-radius: 50%;
-border: 3px solid #c8102e;
-display: flex; flex-direction: column;
-align-items: center; justify-content: center;
-flex-shrink: 0;
+.li-logo { color: #0a66c2; }
+.li-logo svg { display: block; }
+.li-search-bar {
+background: #eef3f8;
+border-radius: 4px;
+padding: 7px 12px;
+font-size: 13px;
+color: #666;
+width: 240px;
+border: 1px solid #d8d8d8;
 }
-.logo-circle .rr { font-family: ‘Oswald’, sans-serif; font-size: 20px; font-weight: 700; color: #1a3a6b; line-height: 1; }
-.logo-circle .sgsl { font-family: ‘Oswald’, sans-serif; font-size: 8px; font-weight: 600; color: #c8102e; }
-.header-text .league-name {
-font-family: ‘Oswald’, sans-serif; font-size: 15px; font-weight: 600;
-color: #fff; text-transform: uppercase; letter-spacing: 1px; line-height: 1.2;
+.li-nav {
+margin-left: auto;
+display: flex;
+gap: 24px;
+align-items: center;
 }
-.header-text .tagline { font-size: 10px; color: #aac4e8; margin-top: 2px; }
-.header-stars { font-size: 20px; color: #ffd700; letter-spacing: 3px; margin-left: auto; }
-
-/* Red bar */
-.urgency-bar {
-background: #c8102e;
-text-align: center; padding: 7px;
-font-family: ‘Oswald’, sans-serif; font-size: 13px; font-weight: 600;
-color: #fff; letter-spacing: 2px; text-transform: uppercase;
-}
-
-/* Hero */
-.hero {
-background: linear-gradient(160deg, #0d2145 0%, #1a3a6b 100%);
-padding: 24px 24px 20px;
+.li-nav-item {
+font-size: 11px;
+color: #666;
 text-align: center;
-position: relative; overflow: hidden;
+cursor: pointer;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 2px;
 }
-.hero::before {
-content: ‘⚾’; position: absolute; font-size: 180px; opacity: 0.04;
-top: -20px; right: -20px; transform: rotate(25deg);
-}
-.all-star-label {
-display: inline-block; background: #c8102e; color: #fff;
-font-family: ‘Oswald’, sans-serif; font-size: 11px; font-weight: 700;
-letter-spacing: 3px; text-transform: uppercase; padding: 4px 16px;
-border-radius: 2px; margin-bottom: 10px;
-}
-.hero h1 {
-font-family: ‘Oswald’, sans-serif; font-size: 50px; font-weight: 700;
-color: #ffd700; text-transform: uppercase; line-height: 1;
-letter-spacing: 2px; text-shadow: 2px 4px 10px rgba(0,0,0,0.5); margin-bottom: 4px;
-}
-.hero h2 {
-font-family: ‘Oswald’, sans-serif; font-size: 22px; font-weight: 600;
-color: #fff; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 14px;
-}
-.team-badge {
-display: inline-block; background: rgba(255,255,255,0.1);
-border: 2px solid #ffd700; border-radius: 4px; padding: 8px 24px;
-}
-.team-badge .fury-name {
-font-family: ‘Oswald’, sans-serif; font-size: 22px; font-weight: 700;
-color: #ffd700; letter-spacing: 2px; text-transform: uppercase;
+.li-nav-item span { display: block; }
+.li-nav-dot { width: 16px; height: 16px; background: #ccc; border-radius: 50%; }
+
+/* — Banner — */
+.li-banner {
+position: relative;
+height: 200px;
+background: var(–bg);
+overflow: hidden;
 }
 
-/* Bottom */
-.bottom { display: flex; }
-.details { flex: 1; padding: 20px; }
-
-.detail-cards { display: flex; gap: 10px; margin-bottom: 16px; }
-.detail-card {
-flex: 1; background: #f4f7fc; border: 2px solid #1a3a6b;
-border-radius: 6px; padding: 12px 8px; text-align: center;
+.banner-grid {
+position: absolute;
+inset: 0;
+background-image:
+linear-gradient(rgba(185,79,255,0.12) 1px, transparent 1px),
+linear-gradient(90deg, rgba(185,79,255,0.12) 1px, transparent 1px);
+background-size: 36px 36px;
+animation: gridShift 20s linear infinite;
 }
-.detail-card .icon { font-size: 22px; display: block; margin-bottom: 4px; }
-.detail-card .label {
-font-family: ‘Oswald’, sans-serif; font-size: 9px; font-weight: 600;
-color: #c8102e; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2px;
-}
-.detail-card .value {
-font-family: ‘Oswald’, sans-serif; font-size: 17px; font-weight: 700; color: #1a3a6b; line-height: 1.1;
+@keyframes gridShift {
+from { background-position: 0 0; }
+to { background-position: 36px 36px; }
 }
 
-.contact-bar {
-background: #f4f7fc; border: 2px solid #e0e8f4;
-border-radius: 6px; padding: 10px 14px; text-align: center; font-size: 11.5px; color: #444;
+.banner-gradient {
+position: absolute;
+inset: 0;
+background: radial-gradient(ellipse 70% 120% at 60% 50%, rgba(185,79,255,0.28) 0%, transparent 65%),
+radial-gradient(ellipse 50% 80% at 10% 80%, rgba(0,229,200,0.18) 0%, transparent 60%),
+linear-gradient(135deg, #0a0a0f 0%, #12091a 50%, #0a0f15 100%);
 }
-.contact-bar strong { color: #1a3a6b; }
 
-/* QR */
-.qr-section {
-width: 155px; flex-shrink: 0;
-background: #1a3a6b;
-display: flex; flex-direction: column;
-align-items: center; justify-content: center;
-padding: 16px 12px; gap: 8px;
+.banner-orb {
+position: absolute;
+border-radius: 50%;
+filter: blur(40px);
+animation: pulse 4s ease-in-out infinite alternate;
 }
-.qr-label {
-font-family: ‘Oswald’, sans-serif; font-size: 10px; font-weight: 600;
-color: #ffd700; text-transform: uppercase; letter-spacing: 1.5px; text-align: center;
+.orb1 { width: 160px; height: 160px; background: rgba(185,79,255,0.4); top: -40px; right: 120px; }
+.orb2 { width: 100px; height: 100px; background: rgba(0,229,200,0.3); bottom: -20px; right: 60px; animation-delay: -2s; }
+@keyframes pulse {
+from { opacity: 0.6; transform: scale(1); }
+to { opacity: 1; transform: scale(1.15); }
 }
-.qr-sub { font-size: 9.5px; color: #aac4e8; text-align: center; line-height: 1.4; }
 
-/* Footer */
-.footer {
-background: #1a3a6b; border-top: 4px solid #c8102e;
-padding: 10px 20px; display: flex; align-items: center; justify-content: space-between;
+.banner-content {
+position: absolute;
+inset: 0;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 6px;
+z-index: 2;
 }
-.footer .website { font-family: ‘Oswald’, sans-serif; font-size: 12px; color: #aac4e8; }
-.footer .footer-logo { font-family: ‘Oswald’, sans-serif; font-size: 12px; font-weight: 700; color: #fff; letter-spacing: 2px; }
 
-@media print {
-body { background: white; padding: 0; }
-.flyer { box-shadow: none; }
+.banner-headline {
+font-family: ‘Syne’, sans-serif;
+font-size: 28px;
+font-weight: 800;
+color: #fff;
+letter-spacing: -0.02em;
+text-shadow: 0 0 32px var(–neon-glow), 0 2px 8px rgba(0,0,0,0.5);
 }
+.banner-headline span { color: var(–neon); }
+
+.banner-sub {
+font-family: ‘DM Sans’, sans-serif;
+font-size: 12px;
+font-weight: 400;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+color: rgba(255,255,255,0.55);
+}
+.banner-sub b { color: var(–teal); font-weight: 500; }
+
+.banner-cta {
+margin-top: 8px;
+background: transparent;
+border: 1px solid rgba(185,79,255,0.5);
+color: var(–neon);
+font-size: 11px;
+font-weight: 500;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+padding: 6px 18px;
+border-radius: 20px;
+box-shadow: 0 0 16px rgba(185,79,255,0.2);
+font-family: ‘Syne’, sans-serif;
+}
+
+/* — Profile area — */
+.li-profile-area {
+background: #fff;
+padding: 0 24px 20px;
+border-bottom: 6px solid #f3f2ee;
+position: relative;
+}
+
+.li-logo-wrap {
+position: relative;
+top: -28px;
+margin-bottom: -18px;
+width: 80px;
+height: 80px;
+}
+.li-company-logo {
+width: 80px;
+height: 80px;
+background: var(–bg);
+border-radius: 8px;
+border: 3px solid #fff;
+box-shadow: 0 0 0 1px rgba(185,79,255,0.4), 0 4px 20px rgba(185,79,255,0.3);
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+}
+.logo-inner {
+font-family: ‘Syne’, sans-serif;
+font-size: 15px;
+font-weight: 800;
+color: var(–neon);
+text-shadow: 0 0 12px var(–neon-glow);
+letter-spacing: -0.03em;
+line-height: 1;
+text-align: center;
+}
+
+.li-profile-right {
+float: right;
+margin-top: 16px;
+display: flex;
+gap: 8px;
+}
+.btn-follow {
+background: var(–li-blue);
+color: #fff;
+border: none;
+border-radius: 16px;
+padding: 6px 18px;
+font-size: 13px;
+font-weight: 600;
+cursor: pointer;
+}
+.btn-more {
+background: transparent;
+border: 1.5px solid #666;
+color: #444;
+border-radius: 16px;
+padding: 6px 14px;
+font-size: 13px;
+cursor: pointer;
+}
+
+.li-company-name {
+font-family: ‘Syne’, sans-serif;
+font-size: 22px;
+font-weight: 800;
+color: #111;
+margin-bottom: 2px;
+}
+
+.li-tagline {
+font-size: 14px;
+color: #333;
+font-weight: 500;
+margin-bottom: 4px;
+}
+.li-tagline .tag-accent { color: var(–neon-dim); font-weight: 600; }
+
+.li-meta {
+font-size: 12px;
+color: #666;
+margin-bottom: 2px;
+}
+.li-meta a { color: var(–li-blue); text-decoration: none; }
+
+.li-followers { font-size: 12px; color: #444; font-weight: 500; }
+
+/* — Content area — */
+.li-content {
+display: grid;
+grid-template-columns: 1fr 280px;
+gap: 8px;
+padding: 8px;
+background: #f3f2ee;
+}
+
+.li-main { display: flex; flex-direction: column; gap: 8px; }
+.li-sidebar { display: flex; flex-direction: column; gap: 8px; }
+
+.li-card {
+background: #fff;
+border-radius: 8px;
+padding: 20px;
+border: 1px solid #e0ddd8;
+}
+
+.card-title {
+font-family: ‘Syne’, sans-serif;
+font-size: 14px;
+font-weight: 700;
+color: #111;
+margin-bottom: 12px;
+letter-spacing: -0.01em;
+}
+
+/* About */
+.about-text {
+font-size: 13px;
+color: #333;
+line-height: 1.65;
+margin-bottom: 14px;
+}
+.services-list {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 6px;
+margin-bottom: 14px;
+}
+.service-tag {
+display: flex;
+align-items: center;
+gap: 6px;
+font-size: 12px;
+color: #333;
+}
+.service-tag .check { color: var(–neon-dim); font-size: 13px; }
+.about-cta {
+font-size: 13px;
+color: #333;
+line-height: 1.65;
+padding-top: 14px;
+border-top: 1px solid #eee;
+}
+.location { font-size: 12px; color: #666; margin-top: 8px; }
+
+/* Posts */
+.post-card {
+border: 1px solid #e8e5e0;
+border-radius: 8px;
+overflow: hidden;
+}
+.post-banner {
+height: 100px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: ‘Syne’, sans-serif;
+font-weight: 800;
+font-size: 16px;
+color: #fff;
+text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+letter-spacing: -0.01em;
+position: relative;
+overflow: hidden;
+}
+.post-banner-bg {
+position: absolute;
+inset: 0;
+background: linear-gradient(135deg, #0a0a0f 0%, #1a0a2e 60%, #0a1520 100%);
+}
+.post-banner-grid {
+position: absolute;
+inset: 0;
+background-image: linear-gradient(rgba(185,79,255,0.15) 1px, transparent 1px),
+linear-gradient(90deg, rgba(185,79,255,0.15) 1px, transparent 1px);
+background-size: 24px 24px;
+}
+.post-banner span { position: relative; z-index: 1; color: var(–neon); }
+.post-body { padding: 12px; }
+.post-title { font-size: 13px; font-weight: 600; color: #111; margin-bottom: 4px; }
+.post-snippet { font-size: 12px; color: #666; line-height: 1.5; }
+.post-meta { font-size: 11px; color: #999; margin-top: 8px; }
+
+/* Services card */
+.service-group { margin-bottom: 14px; }
+.service-group:last-child { margin-bottom: 0; }
+.sg-title {
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–neon-dim);
+margin-bottom: 6px;
+font-family: ‘Syne’, sans-serif;
+}
+.sg-items { display: flex; flex-wrap: wrap; gap: 4px; }
+.sg-item {
+font-size: 11px;
+background: #f0edf8;
+color: #5a3d8a;
+padding: 3px 9px;
+border-radius: 12px;
+border: 1px solid rgba(138,43,226,0.2);
+}
+
+/* Sidebar */
+.sidebar-stat {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 8px 0;
+border-bottom: 1px solid #eee;
+font-size: 12px;
+}
+.sidebar-stat:last-child { border-bottom: none; padding-bottom: 0; }
+.sidebar-stat .label { color: #666; }
+.sidebar-stat .val { color: #111; font-weight: 600; }
+
+.people-card-item {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 8px 0;
+border-bottom: 1px solid #eee;
+}
+.people-card-item:last-child { border-bottom: none; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #b94fff, #8a2be2); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0; }
+.person-info .name { font-size: 12px; font-weight: 600; color: #111; }
+.person-info .role { font-size: 11px; color: #666; }
+
+/* Comparison section */
+.comparison-wrap {
+width: 100%;
+max-width: 860px;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 12px;
+}
+.compare-box {
+background: #fff;
+border-radius: 12px;
+padding: 20px;
+border: 2px solid transparent;
+box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.compare-box.before { border-color: #ffb3b3; }
+.compare-box.after { border-color: rgba(185,79,255,0.5); }
+.compare-label {
+font-family: ‘Syne’, sans-serif;
+font-size: 10px;
+font-weight: 800;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+padding: 3px 10px;
+border-radius: 20px;
+display: inline-block;
+margin-bottom: 14px;
+}
+.before .compare-label { background: #ffe0e0; color: #c0392b; }
+.after .compare-label { background: #f0edf8; color: var(–neon-dim); }
+.compare-title {
+font-family: ‘Syne’, sans-serif;
+font-size: 16px;
+font-weight: 700;
+color: #111;
+margin-bottom: 6px;
+}
+.compare-tagline { font-size: 13px; color: #666; margin-bottom: 14px; font-style: italic; }
+.compare-note {
+font-size: 12px;
+color: #888;
+line-height: 1.6;
+}
+.after .compare-tagline { color: var(–neon-dim); font-style: normal; font-weight: 500; }
+.after .compare-note { color: #444; }
+
+/* Tagline options */
+.tagline-options {
+width: 100%;
+max-width: 860px;
+background: #fff;
+border-radius: 12px;
+padding: 24px;
+box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.section-heading {
+font-family: ‘Syne’, sans-serif;
+font-size: 11px;
+font-weight: 800;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: #6b5c80;
+margin-bottom: 16px;
+}
+.tagline-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tagline-opt {
+border: 1.5px solid #e0ddd8;
+border-radius: 8px;
+padding: 14px 16px;
+cursor: pointer;
+transition: all 0.2s;
+position: relative;
+}
+.tagline-opt.best {
+border-color: var(–neon-dim);
+background: #faf7ff;
+}
+.best-badge {
+position: absolute;
+top: -1px; right: 10px;
+background: var(–neon-dim);
+color: #fff;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+padding: 2px 8px;
+border-radius: 0 0 6px 6px;
+font-family: ‘Syne’, sans-serif;
+}
+.opt-num { font-size: 10px; color: #aaa; font-weight: 600; margin-bottom: 4px; }
+.opt-text { font-family: ‘Syne’, sans-serif; font-size: 15px; font-weight: 700; color: #111; }
+.tagline-opt.best .opt-text { color: var(–neon-dim); }
+
+/* Post ideas */
+.post-ideas {
+width: 100%;
+max-width: 860px;
+background: #fff;
+border-radius: 12px;
+padding: 24px;
+box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.post-ideas-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.idea-card {
+border: 1.5px solid #e8e5e0;
+border-radius: 8px;
+overflow: hidden;
+font-size: 12px;
+}
+.idea-top {
+height: 56px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: ‘Syne’, sans-serif;
+font-size: 20px;
+font-weight: 800;
+background: var(–bg);
+color: var(–neon);
+text-shadow: 0 0 12px var(–neon-glow);
+}
+.idea-body { padding: 10px; }
+.idea-num { font-size: 10px; font-weight: 700; color: #aaa; margin-bottom: 2px; }
+.idea-title { font-size: 12px; font-weight: 600; color: #111; line-height: 1.4; }
 </style>
 
 </head>
 <body>
-<div class="flyer">
 
-  <div class="header">
-    <div class="logo-circle">
-      <div class="rr">RR</div>
-      <div class="sgsl">SGSL</div>
+<div class="page-label">Peak Admin Co. — LinkedIn Page Redesign Mockup</div>
+
+<!-- COMPARISON -->
+
+<div class="comparison-wrap">
+  <div class="compare-box before">
+    <div class="compare-label">Before</div>
+    <div class="compare-title">Peak Admin Co.</div>
+    <div class="compare-tagline">"Smart, Savvy, Seasonal Support"</div>
+    <div class="compare-note">Category: Administrative and Support Services<br><br>Sounds generic. Doesn't communicate AI or automation capabilities. Blends in with thousands of virtual assistant companies.</div>
+  </div>
+  <div class="compare-box after">
+    <div class="compare-label">After ✦</div>
+    <div class="compare-title">Peak Admin Co.</div>
+    <div class="compare-tagline">AI-Powered Admin & Business Operations</div>
+    <div class="compare-note">Category: Business Consulting & Services<br><br>Communicates modern, scalable value. Positions as AI + ops first. Separates from low-value admin market.</div>
+  </div>
+</div>
+
+<!-- TAGLINE OPTIONS -->
+
+<div class="tagline-options">
+  <div class="section-heading">Tagline Options — Choose One Direction</div>
+  <div class="tagline-grid">
+    <div class="tagline-opt best">
+      <div class="best-badge">Best Overall</div>
+      <div class="opt-num">Option 1</div>
+      <div class="opt-text">AI-Powered Admin & Business Operations</div>
     </div>
-    <div class="header-text">
-      <div class="league-name">Round Rock Sertoma<br>Girls Softball League</div>
-      <div class="tagline">Developing Champions On & Off the Field</div>
+    <div class="tagline-opt">
+      <div class="opt-num">Option 2 — More Premium</div>
+      <div class="opt-text">Smart Operations. Automated Growth.</div>
     </div>
-    <div class="header-stars">★★★</div>
+    <div class="tagline-opt">
+      <div class="opt-num">Option 3 — Best for SMB</div>
+      <div class="opt-text">Helping Businesses Scale with AI & Automation</div>
+    </div>
+    <div class="tagline-opt">
+      <div class="opt-num">Option 4 — Tech Forward</div>
+      <div class="opt-text">AI Automation for Modern Business Operations</div>
+    </div>
+  </div>
+</div>
+
+<!-- LINKEDIN PAGE MOCKUP -->
+
+<div class="li-shell">
+
+  <!-- Topbar -->
+
+  <div class="li-topbar">
+    <div class="li-logo">
+      <svg width="28" height="28" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="4" fill="#0a66c2"/><path d="M7 13h4.5v14H7V13zm2.25-7a2.75 2.75 0 110 5.5 2.75 2.75 0 010-5.5zM15 13h4.3v1.9h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V27H24.5v-6.7c0-1.6-.03-3.66-2.23-3.66-2.24 0-2.58 1.74-2.58 3.54V27H15V13z" fill="#fff"/></svg>
+    </div>
+    <div class="li-search-bar">Peak Admin Co.</div>
+    <div class="li-nav">
+      <div class="li-nav-item"><div class="li-nav-dot"></div><span>Home</span></div>
+      <div class="li-nav-item"><div class="li-nav-dot"></div><span>My Network</span></div>
+      <div class="li-nav-item"><div class="li-nav-dot"></div><span>Jobs</span></div>
+      <div class="li-nav-item"><div class="li-nav-dot"></div><span>Messaging</span></div>
+    </div>
   </div>
 
-  <div class="urgency-bar">⚡ Tonight Only — Limited Spots Available ⚡</div>
+  <!-- Banner -->
 
-  <div class="hero">
-    <div class="all-star-label">🌟 Official All Star Selection Event 🌟</div>
-    <h1>All Star Tryouts</h1>
-    <h2>Coach-Pitch Division</h2>
-    <div class="team-badge">
-      <div class="fury-name">🔥 Round Rock Fury All Stars 🔥</div>
+  <div class="li-banner">
+    <div class="banner-grid"></div>
+    <div class="banner-gradient"></div>
+    <div class="banner-orb orb1"></div>
+    <div class="banner-orb orb2"></div>
+    <div class="banner-content">
+      <div class="banner-headline"><span>AI-Powered</span> Business Operations</div>
+      <div class="banner-sub"><b>Automation</b> &nbsp;•&nbsp; Admin Support &nbsp;•&nbsp; Workflow Optimization</div>
+      <div class="banner-cta">Helping Small Businesses Scale Smarter</div>
     </div>
   </div>
 
-  <div class="bottom">
-    <div class="details">
-      <div class="detail-cards">
-        <div class="detail-card">
-          <span class="icon">📅</span>
-          <div class="label">Date</div>
-          <div class="value">Tonight</div>
-        </div>
-        <div class="detail-card">
-          <span class="icon">⏰</span>
-          <div class="label">Time</div>
-          <div class="value">6:00 PM</div>
-        </div>
-        <div class="detail-card">
-          <span class="icon">📍</span>
-          <div class="label">Location</div>
-          <div class="value">RRSGSL Fields</div>
-        </div>
-      </div>
-      <div class="contact-bar">
-        <strong>Questions?</strong> &nbsp;info@rrsgsl.org
+  <!-- Profile -->
+
+  <div class="li-profile-area">
+    <div class="li-profile-right">
+      <button class="btn-follow">+ Follow</button>
+      <button class="btn-more">• • •</button>
+    </div>
+    <div class="li-logo-wrap">
+      <div class="li-company-logo">
+        <div class="logo-inner">PEAK<br>ADMIN</div>
       </div>
     </div>
+    <div class="li-company-name">Peak Admin Co.</div>
+    <div class="li-tagline"><span class="tag-accent">AI-Powered</span> Admin & Business Operations</div>
+    <div class="li-meta">Business Consulting & Services &nbsp;·&nbsp; <a href="#">peakadmin.co</a></div>
+    <div class="li-meta">Austin, Texas &nbsp;·&nbsp; 1–10 employees</div>
+    <div class="li-followers">847 followers &nbsp;·&nbsp; 312 following</div>
+  </div>
+
+  <!-- Content -->
+
+  <div class="li-content">
+    <div class="li-main">
 
 ```
-<div class="qr-section">
-  <div class="qr-label">Scan for<br>More Info</div>
-  <div id="qrcode"></div>
-  <div class="qr-sub">Official tryout<br>details & forms</div>
+  <!-- About -->
+  <div class="li-card">
+    <div class="card-title">About</div>
+    <div class="about-text">Peak Admin Co. helps businesses streamline operations through AI-powered administrative support, workflow automation, and modern business systems.</div>
+    <div class="about-text">We combine operational expertise with intelligent automation to help companies save time, reduce manual work, and improve efficiency across day-to-day business processes.</div>
+    <div class="services-list">
+      <div class="service-tag"><span class="check">✅</span> Administrative Support</div>
+      <div class="service-tag"><span class="check">✅</span> AI Workflow Automation</div>
+      <div class="service-tag"><span class="check">✅</span> CRM & Process Optimization</div>
+      <div class="service-tag"><span class="check">✅</span> Scheduling & Client Ops</div>
+      <div class="service-tag"><span class="check">✅</span> Data & Reporting Support</div>
+      <div class="service-tag"><span class="check">✅</span> Business Process Documentation</div>
+      <div class="service-tag"><span class="check">✅</span> AI Integration Consulting</div>
+    </div>
+    <div class="about-cta">Whether you need ongoing operational support or scalable automation solutions, Peak Admin Co. helps teams work smarter and grow faster.</div>
+    <div class="location">📍 Austin, Texas</div>
+  </div>
+
+  <!-- Services -->
+  <div class="li-card">
+    <div class="card-title">Services</div>
+    <div class="service-group">
+      <div class="sg-title">AI & Workflow Automation</div>
+      <div class="sg-items">
+        <span class="sg-item">Workflow automation</span>
+        <span class="sg-item">AI assistants</span>
+        <span class="sg-item">Process optimization</span>
+        <span class="sg-item">Task automation</span>
+        <span class="sg-item">CRM automation</span>
+      </div>
+    </div>
+    <div class="service-group">
+      <div class="sg-title">Administrative Operations</div>
+      <div class="sg-items">
+        <span class="sg-item">Inbox management</span>
+        <span class="sg-item">Calendar management</span>
+        <span class="sg-item">SOP documentation</span>
+        <span class="sg-item">Client onboarding</span>
+      </div>
+    </div>
+    <div class="service-group">
+      <div class="sg-title">Business Systems Support</div>
+      <div class="sg-items">
+        <span class="sg-item">Data organization</span>
+        <span class="sg-item">Reporting dashboards</span>
+        <span class="sg-item">Operational workflows</span>
+        <span class="sg-item">Automation integrations</span>
+      </div>
+    </div>
+    <div class="service-group">
+      <div class="sg-title">Fractional Operations Support</div>
+      <div class="sg-items">
+        <span class="sg-item">Seasonal support</span>
+        <span class="sg-item">Startup ops support</span>
+        <span class="sg-item">Process scaling</span>
+        <span class="sg-item">Virtual ops management</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Posts -->
+  <div class="li-card">
+    <div class="card-title">Posts</div>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+
+      <div class="post-card">
+        <div class="post-banner">
+          <div class="post-banner-bg"></div>
+          <div class="post-banner-grid"></div>
+          <span>What We Do</span>
+        </div>
+        <div class="post-body">
+          <div class="post-title">What Peak Admin Co. Actually Does</div>
+          <div class="post-snippet">Manual → Automated → Time Saved → Business Impact. Here's exactly how we help small businesses work smarter.</div>
+          <div class="post-meta">2d ago · 94 reactions</div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-banner">
+          <div class="post-banner-bg"></div>
+          <div class="post-banner-grid"></div>
+          <span>Before / After</span>
+        </div>
+        <div class="post-body">
+          <div class="post-title">Before vs. After Automation</div>
+          <div class="post-snippet">We transformed a client's manual scheduling + client onboarding into a fully automated workflow. See the results.</div>
+          <div class="post-meta">5d ago · 142 reactions</div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-banner">
+          <div class="post-banner-bg"></div>
+          <div class="post-banner-grid"></div>
+          <span>3 Tasks</span>
+        </div>
+        <div class="post-body">
+          <div class="post-title">3 Tasks Every Small Business Should Automate</div>
+          <div class="post-snippet">Most business owners are still doing these manually. Here's what to hand off to AI first.</div>
+          <div class="post-meta">1w ago · 210 reactions</div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-banner">
+          <div class="post-banner-bg"></div>
+          <div class="post-banner-grid"></div>
+          <span>BTS</span>
+        </div>
+        <div class="post-body">
+          <div class="post-title">Behind the Scenes: Our AI Workflow Stack</div>
+          <div class="post-snippet">A look inside the tools and automations we use to run lean operations for our clients.</div>
+          <div class="post-meta">2w ago · 178 reactions</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Sidebar -->
+<div class="li-sidebar">
+  <div class="li-card">
+    <div class="card-title">Page overview</div>
+    <div class="sidebar-stat"><span class="label">Followers</span><span class="val">847</span></div>
+    <div class="sidebar-stat"><span class="label">Employees on LinkedIn</span><span class="val">3</span></div>
+    <div class="sidebar-stat"><span class="label">Industry</span><span class="val">Business Consulting</span></div>
+    <div class="sidebar-stat"><span class="label">Company size</span><span class="val">1–10</span></div>
+    <div class="sidebar-stat"><span class="label">Founded</span><span class="val">2023</span></div>
+    <div class="sidebar-stat"><span class="label">Location</span><span class="val">Austin, TX</span></div>
+  </div>
+
+  <div class="li-card">
+    <div class="card-title">People also viewed</div>
+    <div class="people-card-item">
+      <div class="avatar">VA</div>
+      <div class="person-info"><div class="name">VirtuOps Agency</div><div class="role">Virtual Assistant Services</div></div>
+    </div>
+    <div class="people-card-item">
+      <div class="avatar" style="background:linear-gradient(135deg,#00e5c8,#0a66c2)">AO</div>
+      <div class="person-info"><div class="name">AutoOps Co.</div><div class="role">Business Process Automation</div></div>
+    </div>
+    <div class="people-card-item">
+      <div class="avatar" style="background:linear-gradient(135deg,#f7931e,#e85d04)">OP</div>
+      <div class="person-info"><div class="name">OpsPeak Solutions</div><div class="role">Fractional Operations</div></div>
+    </div>
+  </div>
+
+  <div class="li-card" style="background: #faf7ff; border-color: rgba(185,79,255,0.25);">
+    <div class="card-title" style="color: var(--neon-dim);">✦ Strategic Position</div>
+    <div style="font-size:12px; color:#444; line-height:1.65;">Position as a <strong>modern operations + AI automation company</strong> — not just virtual admin support. Your advantage is operations background, finance/process expertise, AI systems, and workflow optimization. That's a premium market.</div>
+  </div>
 </div>
 ```
 
   </div>
-
-  <div class="footer">
-    <div class="website">www.rrsgsl.org</div>
-    <div class="footer-logo">RRSGSL</div>
-    <div style="font-size:11px;color:#aac4e8;">📘 /RRSGSL</div>
-  </div>
-
 </div>
 
-<script>
-  new QRCode(document.getElementById("qrcode"), {
-    text: "https://www.youtube.com/watch?v=XL_n4Auo4Ig",
-    width: 110,
-    height: 110,
-    colorDark: "#ffffff",
-    colorLight: "#1a3a6b",
-    correctLevel: QRCode.CorrectLevel.H
-  });
-</script>
+<!-- POST IDEAS -->
+
+<div class="post-ideas">
+  <div class="section-heading">First 5 Post Ideas After Redesign</div>
+  <div class="post-ideas-grid">
+    <div class="idea-card">
+      <div class="idea-top">01</div>
+      <div class="idea-body">
+        <div class="idea-num">Carousel</div>
+        <div class="idea-title">"What We Actually Do"</div>
+      </div>
+    </div>
+    <div class="idea-card">
+      <div class="idea-top">02</div>
+      <div class="idea-body">
+        <div class="idea-num">Transformation</div>
+        <div class="idea-title">Before vs After Automation</div>
+      </div>
+    </div>
+    <div class="idea-card">
+      <div class="idea-top">03</div>
+      <div class="idea-body">
+        <div class="idea-num">Engagement</div>
+        <div class="idea-title">3 Tasks to Automate First</div>
+      </div>
+    </div>
+    <div class="idea-card">
+      <div class="idea-top">04</div>
+      <div class="idea-body">
+        <div class="idea-num">Behind Scenes</div>
+        <div class="idea-title">Our AI Workflow Stack</div>
+      </div>
+    </div>
+    <div class="idea-card">
+      <div class="idea-top">05</div>
+      <div class="idea-body">
+        <div class="idea-num">Pain Point</div>
+        <div class="idea-title">"Still doing admin manually?"</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
